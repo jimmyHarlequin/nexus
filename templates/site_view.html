@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<div class="container">
+        <h1 class="page-header text-center">{{ title }} - PAT Testing Records</h1>
+    </div>
+    <div class="container">
+        <div class="text-center">
+	    <button data-toggle="collapse" data-target="#add">Click to ADD new record</button>
+	</div>
+
+    <div id="add" class="collapse">
+        <div class="container">
+            <div class="jumbotron">
+
+                <form class="form-horizontal" action="?" method="POST">
+
+                    <div class="form-group">
+                        <label for="site" class="col-sm-2 control-label">Site</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="site" id="site" placeholder="Click to select">
+                                <option>{{ title }}</option>
+                                <option disabled>--------------------</option>
+                                <option>Auckland Zoo</option>
+                                <option>Big Splash</option>
+                                <option>Kelly Tarlton's</option>
+                                <option>Rainbow Springs</option>
+                                <option>Rotorua Gondola</option>
+                                <option>Sky City</option>
+                                <option>Waitomo Caves</option>
+                                <option>Antarctic Centre</option>
+                                <option>Christchurch Gondola</option>
+                                <option>Hanmer Springs</option>
+                                <option>Te Anau Glowworm Caves</option>
+                                <option>TSS Earnslaw</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item" class="col-sm-2 control-label">Item</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="item" id="item" placeholder="Item description">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asset" class="col-sm-2 control-label">Asset No.</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="asset" id="asset" placeholder="Asset number if applicable">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testType" class="col-sm-2 control-label">Test Type</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="testType" id="testType">
+                                <option>Class 1</option>
+                                <option>Class 2</option>
+                                <option>Class 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passFail" class="col-sm-2 control-label">RESULT</label>
+                        <div class="col-sm-10">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="passFail" id="passFail" value="PASS" checked>
+                                    PASS
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="passFail" id="passFail" value="FAIL">
+                                    FAIL
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="tagNumber" class="col-sm-2 control-label">Tag number</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="tagNumber" id="tagNumber" placeholder="Tag number">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testPeriod" class="col-sm-2 control-label">Test period</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="testPeriod" id="testPeriod" placeholder="Test period">
+                                <option>6 months</option>
+                                <option>12 months</option>
+                                <option>24 months</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiryDate" class="col-sm-2 control-label">Tag expiry date</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="expiryDate" id="expiryDate" placeholder="dd/mm/yy">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="col-sm-2 control-label">Notes</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" name="notes" id="notes"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <input method="POST" type="submit" value="Submit">
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+<!-- END FORM -->
+
+    <div class="container">
+
+        <!-- TABLE OF ITEMS -->
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Item</th>
+                        <th>Asset</th>
+                        <th>Test Type</th>
+                        <th>Result</th>
+                        <th>Tag Number</th>
+                        <th>Test Period</th>
+                        <th>Tag Expiry Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% block body %}
+                        {% for item in list %}
+                        {% if item.result == 'FAIL' %}
+                                <tr class="danger">
+                                    <td>{{item.site}}</td>
+                                    <td>{{item.item}}</td>
+                                    <td>{{item.asset}}</td>
+                                    <td>{{item.testType}}</td>
+                                    <td onclick="confirm()">{{item.result}}</td>
+                                    <td>{{item.tagNumber}}</td>
+                                    <td>{{item.testPeriod}}</td>
+                                    <td>{{item.tagExpiry}}</td>
+                                    <td>{{item.notes}}</td>
+                                    <td>
+                                        <a href="{{ url_for('deletePat', id=item.id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                        {% else %}
+                                <tr class="success">
+                                    <td>{{item.site}}</td>
+                                    <td>{{item.item}}</td>
+                                    <td>{{item.asset}}</td>
+                                    <td>{{item.testType}}</td>
+                                    <td>{{item.result}}</td>
+                                    <td>{{item.tagNumber}}</td>
+                                    <td>{{item.testPeriod}}</td>
+                                    <td>{{item.tagExpiry}}</td>
+                                    <td>{{item.notes}}</td>
+                                    <td>
+                                        <a href="{{ url_for('deletePat', id=item.id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endblock %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="page-header text-center">View Site Records</h1>
+        <div class="jumbotron">
+            <form>
+                <div class="container">
+                    <p>
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Auckland Zoo') }}" role="button">ACKZ</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Big Splash') }}" role="button">BGSP</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='TSS Earnslaw') }}" role="button">ERNS</a>
+                        </div>
+                    </p>
+                </div>
+                <div class="container">
+                    <p>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Christchurch Gondola') }}" role="button">GOND</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Hanmer Springs') }}" role="button">HSPR</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Antarctic Centre') }}" role="button">IANC</a>
+                        </div>
+                    </p>
+                </div>
+                <div class="container">
+                    <p>
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName="Kelly Tarlton's") }}" role="button">KLTN</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Rainbow Springs') }}" role="button">RBSP</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Rotorua Gondola') }}" role="button">SKRT</a>
+                        </div>
+                    </p>
+                </div>
+                <div class="container">
+                    <p>
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Sky City') }}" role="button">SKYC</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Te Anau Glowworm Caves') }}" role="button">TAGW</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ url_for('siteView', siteName='Waitomo Caves') }}" role="button">WCAV</a>
+                        </div>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

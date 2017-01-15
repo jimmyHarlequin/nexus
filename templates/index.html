@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">Welcome to NEXUS.</h1>
+			<p class="text-center">Nexus is the online tools platform for Technical Delivery NZ.</p>
+		</div>
+	</div>
+
+	<div class="container">
+
+<!-- RESOURCES DROP-DOWN -->
+	<div class="container">
+		<h1 class="page-header text-center">RESOURCES</h1>
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"></h3>
+				</div>
+					<div class="panel-body">
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="https://docs.google.com/spreadsheets/d/1AYcsQqy--muzDXdzxpBz35wQBPL5ux-ng1dwV0Sjd5E/edit#gid=1061369087" target="_blank">
+								<img src="https://i.imgur.com/ORoiurh.png" alt="icon" width="100" height="100">
+							</a>
+							<h4>Purchase Orders</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="https://admin.google.com/AdminHome?groupId=anzsd@magicmemories.com&chromeless=1#Home:"target="_blank">
+								<img src="https://i.imgur.com/BvO4psq.png" alt="icon" width="100" height="100">
+							</a>
+							<h4>Google Admin</h4>
+						</div>
+
+						<!-- PANEL OBJECT -->
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="https://assets.magicmemories.com">
+								<img src="https://i.imgur.com/g8x7AdU.png" alt="icon" width="100" height="100"target="_blank">
+							</a>
+							<h4>Asset Tracking</h4>
+						</div>
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="ordered_items">
+								<img src="https://i.imgur.com/eykE52b.png" alt="icon" width="100" height="100">
+							</a>
+							<h4>Goods Logistics</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="logistics">
+								<img src="https://i.imgur.com/5tXb8Y0.png" alt="icon" width="100" height="100">
+							</a>
+							<h4>Stock Levels</h4>
+						</div>
+
+						<!-- PANEL OBJECT -->
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="{{ url_for('siteView', siteName='Auckland Zoo') }}">
+								<img src="https://i.imgur.com/1Jm4pI5.png" alt="icon" width="100" height="100">
+							</a>
+							<h4>PAT Testing</h4>
+						</div>
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+<!-- SUPPLIERS DROP-DOWN -->
+	<div class="container">
+		<h1 class=" page-header text-center">SUPPLIERS</h1>
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"></h3>
+				</div>
+
+					<div class="panel-body">
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="http://www.noelleeming.co.nz" target="_blank">
+								<img src="http://i.imgur.com/TKasVLq.jpg" class="img-circle" alt="Noel Leeming" width="100" height="100">
+							</a>
+							<h4>Noel Leeming</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="http://www.pbtech.co.nz" target="_blank">
+								<img src="https://i.imgur.com/9OCaOOe.png" class="img-circle" alt="PB Tech" width="100" height="100">
+							</a>
+							<h4>PB Tech</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="http://nz.ingrammicro.com" target="_blank">
+								<img src="http://i.imgur.com/lpAdtaQ.jpg" class="img-circle" alt="Ingram Micro" width="100" height="100">
+							</a>
+							<h4>Ingram Micro</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="http://www.lacklands.co.nz" target="_blank">
+								<img src="https://i.imgur.com/AHGagvN.png" class="img-circle" alt="Lacklands" width="100" height="100">
+							</a>
+							<h4>Lacklands</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="https://store.conbrio-it.com/pc/home.asp" target="_blank">
+								<img src="https://i.imgur.com/BvV31V3.jpg" class="img-circle" alt="Insite" width="100" height="100">
+							</a>
+							<h4>Insite</h4>
+						</div>
+
+						<div class="col-lg-4 col-sm-6 text-center">
+							<a href="http://www.recharged.co.nz/" target="_blank">
+								<img src="https://i.imgur.com/WNll7aE.png" class="img-circle" alt="Recharged" width="100" height="100">
+							</a>
+							<h4>Recharged</h4>
+						</div>
+
+
+					</div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
